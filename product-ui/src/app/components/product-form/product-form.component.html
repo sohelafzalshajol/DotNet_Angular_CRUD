@@ -1,0 +1,33 @@
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <input formControlName="Id" class="form-control" type="hidden" />
+    <div class="mb-3">
+      <label>Name</label>
+      <input formControlName="name" class="form-control" />
+    </div>
+    <div class="mb-3">
+      <label>Price</label>
+      <input formControlName="price" type="number" class="form-control" />
+    </div>
+    <div class="mb-3">
+      <label>Note</label>
+      <textarea formControlName="note" class="form-control"></textarea>
+    </div>
+    <div class="mb-3">
+      <label>Active</label>
+      <input formControlName="isActive" type="checkbox" />
+    </div>
+  
+    <h5>Product Details</h5>
+    <div formArrayName="productDetails">
+      <div *ngFor="let detail of productDetails.controls; let i = index" [formGroupName]="i" class="mb-2 d-flex">
+        
+        <input formControlName="id" class="form-control" type="hidden" />
+        <input class="form-control me-2" formControlName="details" placeholder="Detail" />
+        <button type="button" class="btn btn-danger" (click)="removeDetail(i)">Remove</button>
+      </div>
+    </div>
+    <button type="button" class="btn btn-secondary" (click)="addDetail()">Add Detail</button>
+    <button class="btn btn-primary" type="submit">Save</button>
+  </form>
+  
